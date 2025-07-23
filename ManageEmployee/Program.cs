@@ -13,7 +13,8 @@ internal class Program
     private static readonly Regex PhoneRegex = new(@"^\(\d{3}\) \d{3}-\d{4}$", RegexOptions.Compiled);
     private static readonly Regex StateRegex = new(@"^[A-Z]{2}$", RegexOptions.Compiled);
     private static readonly Regex ZipRegex = new(@"^\d{5}$", RegexOptions.Compiled);
-
+    private static readonly string[] titles = ["Developer", "Senior Developer", "Manager", "Analyst", "Engineer"];
+    private static readonly CultureInfo ci = new("en-US");
     private static async Task Main(string[] args)
     {
         try
@@ -110,7 +111,7 @@ internal class Program
                     "Green", "Adams"
                 ];
 
-                string[] titles = ["Developer", "Senior Developer", "Manager", "Analyst", "Engineer"];
+
                 string[] states = ["CA", "NY", "TX", "FL", "IL"];
                 string[] cities = ["Los Angeles", "New York", "Houston", "Miami", "Chicago"];
 
@@ -157,7 +158,6 @@ internal class Program
     private static bool IsTitleSearch(string term)
     {
         if (string.IsNullOrWhiteSpace(term)) return false;
-        string[] titles = ["developer", "manager", "analyst", "engineer"];
         return titles.Any(t => t.Contains(term.ToLower(), StringComparison.OrdinalIgnoreCase));
     }
 
@@ -189,7 +189,7 @@ internal class Program
                 })
                 .ToListAsync();
 
-            CultureInfo ci = new("en-US"); // Use consistent culture
+
 
             Console.WriteLine(new string('-', 160));
             Console.WriteLine(
@@ -238,7 +238,7 @@ internal class Program
 
             foreach (var emp in employees)
             {
-                Console.WriteLine($"Name: {emp.Name}, Title: {emp.Title}, Salary: {emp.Salary:C}");
+                Console.WriteLine($"Name: {emp.Name}, Title: {emp.Title}, Salary: {emp.Salary.ToString("C", ci)}");
             }
         }
         catch (Exception)
@@ -275,7 +275,7 @@ internal class Program
 
             foreach (var emp in employees)
             {
-                Console.WriteLine($"Name: {emp.Name}, Title: {emp.Title}, Salary: {emp.Salary:C}");
+                Console.WriteLine($"Name: {emp.Name}, Title: {emp.Title}, Salary: {emp.Salary.ToString("C", ci)}");
             }
         }
         catch (Exception)
@@ -307,7 +307,7 @@ internal class Program
 
             foreach (var title in titles)
             {
-                Console.WriteLine($"Title: {title.Title}, Min Salary: {title.MinSalary:C}, Max Salary: {title.MaxSalary:C}");
+                Console.WriteLine($"Title: {title.Title}, Min Salary: {title.MinSalary.ToString("C", ci)}, Max Salary: {title.MaxSalary.ToString("C", ci)}");
             }
         }
         catch (Exception)

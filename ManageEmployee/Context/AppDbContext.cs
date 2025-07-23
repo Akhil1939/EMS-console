@@ -22,6 +22,6 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<EmployeeSalary>()
             .HasOne(es => es.Employee)
             .WithMany()
-            .HasForeignKey(es => es.EmployeeId).HasConstraintName("fk_empsalary_emp");
+            .HasForeignKey(es => es.EmployeeId).HasConstraintName("FK_EmployeeSalary_Employee");
     }
 }

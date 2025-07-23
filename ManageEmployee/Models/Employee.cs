@@ -19,5 +19,5 @@ public class Employee
     public DateTime JoinDate { get; set; }
     public DateTime? ExitDate { get; set; }
 
-    public virtual ICollection<EmployeeSalary> Salaries { get; set; }
+    //public virtual ICollection<EmployeeSalary> Salaries { get; set; }
 }
